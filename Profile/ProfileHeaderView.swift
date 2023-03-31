@@ -10,11 +10,12 @@ import UIKit
 final class ProfileHeaderView: UIView {
     
     private var statusText: String?
-        
+    
     let imageElf: UIImageView = {
-        let imageElf = UIImageView(frame: CGRect(x: 16, y: 104, width: 135, height: 135))
+        let imageElf = UIImageView()
+        imageElf.translatesAutoresizingMaskIntoConstraints = false
         imageElf.image = UIImage(named: "Elf.jpeg")
-        imageElf.layer.cornerRadius = imageElf.frame.height/2
+        imageElf.layer.cornerRadius = 55
         imageElf.layer.masksToBounds = true
         imageElf.layer.borderColor = UIColor.white.cgColor
         imageElf.layer.borderWidth = 3
@@ -22,7 +23,8 @@ final class ProfileHeaderView: UIView {
     }()
     
     let nameLabel: UILabel = {
-        let nameLabel = UILabel(frame: CGRect(x: 170, y: 127, width: 207, height: 22))
+        let nameLabel = UILabel()
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.text = "Hi, my name is Elf!"
         nameLabel.textColor = UIColor.black
         nameLabel.font = .boldSystemFont(ofSize: 18.0)
@@ -30,7 +32,8 @@ final class ProfileHeaderView: UIView {
     }()
     
     let statusLabel: UILabel = {
-        let statusLabel = UILabel(frame: CGRect(x: 170, y: 190, width: 207, height: 22))
+        let statusLabel = UILabel()
+        statusLabel.translatesAutoresizingMaskIntoConstraints = false
         statusLabel.text = "Wating for something..."
         statusLabel.textColor = .gray
         statusLabel.font = .systemFont(ofSize: 14.0)
@@ -39,7 +42,8 @@ final class ProfileHeaderView: UIView {
     
     
     private lazy var setStatusButton: UIButton = {
-        let setStatusButton = UIButton(frame: CGRect(x: 16, y: 260, width: 361, height: 50))
+        let setStatusButton = UIButton()
+        setStatusButton.translatesAutoresizingMaskIntoConstraints = false
         setStatusButton.backgroundColor = .systemBlue
         setStatusButton.setTitle("Set status", for: .normal)
         setStatusButton.setTitleColor(.white, for: .normal)
@@ -60,8 +64,9 @@ final class ProfileHeaderView: UIView {
     }
     
     private lazy var statusTextFielld: UITextField = {
-        let statusTextFielld = UITextField(frame: CGRect(x: 170, y: 215, width: 207, height: 40))
-        let paddingView = UIView(frame: CGRect(x: 170, y: 215, width: 10, height: statusTextFielld.frame.height))
+        let statusTextFielld = UITextField()
+        statusTextFielld.translatesAutoresizingMaskIntoConstraints = false
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: statusTextFielld.frame.height))
         statusTextFielld.leftView = paddingView
         statusTextFielld.leftViewMode = .always
         statusTextFielld.backgroundColor = .white
@@ -75,15 +80,43 @@ final class ProfileHeaderView: UIView {
         return statusTextFielld
     }()
     
-        @objc func statusTextFielldAction(_ statusTextFielld: UITextField) {
-            statusText = statusTextFielld.text
-        }
-
-    func setupView() {
+    @objc func statusTextFielldAction(_ statusTextFielld: UITextField) {
+        statusText = statusTextFielld.text
+    }
+    
+    func layoutProfileHeaderView () {
         addSubview(imageElf)
         addSubview(nameLabel)
         addSubview(statusLabel)
-        addSubview(setStatusButton)
         addSubview(statusTextFielld)
+        addSubview(setStatusButton)
+        
+        
+        NSLayoutConstraint.activate([
+            imageElf.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            imageElf.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            imageElf.widthAnchor.constraint(equalToConstant: 110),
+            imageElf.heightAnchor.constraint(equalToConstant: 110),
+            
+            nameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
+            nameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 142),
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            nameLabel.heightAnchor.constraint(equalToConstant: 22),
+            
+            statusLabel.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 60),
+            statusLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            statusLabel.heightAnchor.constraint(equalToConstant: 22),
+            
+            statusTextFielld.topAnchor.constraint(equalTo: statusLabel.topAnchor, constant: 25),
+            statusTextFielld.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
+            statusTextFielld.heightAnchor.constraint(equalToConstant: 40),
+            statusTextFielld.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            
+            setStatusButton.topAnchor.constraint(equalTo: statusLabel.topAnchor, constant: 70),
+            setStatusButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            setStatusButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            setStatusButton.heightAnchor.constraint(equalToConstant: 50)
+            
+        ])
     }
 }
