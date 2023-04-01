@@ -21,7 +21,6 @@ final class ProfileViewController: UIViewController {
         titleButton.backgroundColor = .systemBlue
         titleButton.setTitle("Кнопка", for: .normal)
         titleButton.setTitleColor(.white, for: .normal)
-        titleButton.layer.cornerRadius = 4.0
         titleButton.layer.shadowOffset.height = 4
         titleButton.layer.shadowOffset.width = 4
         titleButton.layer.shadowRadius = 4
@@ -45,9 +44,9 @@ final class ProfileViewController: UIViewController {
     
     private func layoutProfileViewController() {
         NSLayoutConstraint.activate([
-            profileHeadView.topAnchor.constraint(equalTo: view.topAnchor),
-            profileHeadView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            profileHeadView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            profileHeadView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileHeadView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            profileHeadView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
             profileHeadView.heightAnchor.constraint(equalToConstant: 220),
             
             titleButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),

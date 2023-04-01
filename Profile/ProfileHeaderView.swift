@@ -100,7 +100,7 @@ final class ProfileHeaderView: UIView {
             
             nameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 27),
             nameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 142),
-            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            nameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             nameLabel.heightAnchor.constraint(equalToConstant: 22),
             
             statusLabel.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 60),
