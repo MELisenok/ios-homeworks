@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = tabBarController
+        window?.rootViewController = LogInViewController()//tabBarController
         window?.makeKeyAndVisible()
 
         
