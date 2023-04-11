@@ -40,11 +40,12 @@ final class LogInViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.backgroundColor = .systemGray2
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
+        stackView.distribution = .equalSpacing
         stackView.spacing = 16
         stackView.layer.cornerRadius = 10
         stackView.layer.borderColor = UIColor.lightGray.cgColor
         stackView.layer.borderWidth = 0.5
+        stackView.clipsToBounds = true
         return stackView
     }()
     
@@ -58,9 +59,6 @@ final class LogInViewController: UIViewController {
         loginTextFielld.placeholder = "E-mail or phone"
         loginTextFielld.font = .systemFont(ofSize: 16)
         loginTextFielld.textColor = .black
-        loginTextFielld.layer.cornerRadius = 12.0
-        loginTextFielld.layer.cornerRadius = 10.0
-        loginTextFielld.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         loginTextFielld.autocapitalizationType = .none
 
         return loginTextFielld
@@ -76,16 +74,20 @@ final class LogInViewController: UIViewController {
         passwordTextFielld.placeholder = "Password"
         passwordTextFielld.font = .systemFont(ofSize: 16)
         passwordTextFielld.textColor = .black
-        passwordTextFielld.layer.cornerRadius = 12.0
-        passwordTextFielld.layer.cornerRadius = 10.0
-        passwordTextFielld.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        passwordTextFielld.layer.borderWidth = 0.5
-        passwordTextFielld.layer.borderColor = UIColor.lightGray.cgColor
         passwordTextFielld.autocapitalizationType = .none
         passwordTextFielld.isSecureTextEntry = true
 
         return passwordTextFielld
     }()
+    
+    private let viewStack: UIView = {
+            let viewStack = UIView()
+            viewStack.translatesAutoresizingMaskIntoConstraints = false
+            viewStack.backgroundColor = .systemGray3
+            viewStack.layer.borderWidth = 0.5
+            viewStack.layer.borderColor = UIColor.lightGray.cgColor
+            return viewStack
+        }()
     
     private lazy var logInButton: UIButton = {
         let logInButton = UIButton()
@@ -139,6 +141,7 @@ final class LogInViewController: UIViewController {
         contentView.addSubview(imageVK)
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(loginTextFielld)
+        stackView.addArrangedSubview(viewStack)
         stackView.addArrangedSubview(passwordTextFielld)
         contentView.addSubview(logInButton)
         
@@ -170,12 +173,17 @@ final class LogInViewController: UIViewController {
             loginTextFielld.topAnchor.constraint(equalTo: stackView.topAnchor),
             loginTextFielld.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             loginTextFielld.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            loginTextFielld.heightAnchor.constraint(equalToConstant: 50),
+            loginTextFielld.heightAnchor.constraint(equalToConstant: 49.75),
             
-            passwordTextFielld.topAnchor.constraint(equalTo: loginTextFielld.bottomAnchor),
+            viewStack.topAnchor.constraint(equalTo: loginTextFielld.bottomAnchor),
+            viewStack.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            viewStack.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            viewStack.heightAnchor.constraint(equalToConstant: 0.5),
+            
+            passwordTextFielld.topAnchor.constraint(equalTo: viewStack.bottomAnchor),
             passwordTextFielld.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             passwordTextFielld.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            passwordTextFielld.heightAnchor.constraint(equalToConstant: 50),
+            passwordTextFielld.heightAnchor.constraint(equalToConstant: 49.75),
             
             logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -188,7 +196,6 @@ final class LogInViewController: UIViewController {
     
     @objc private func logInButtonPressed() {
         let profileVC = ProfileViewController()
-        present(profileVC, animated: true) //модальный показ
-        //navigationController?.pushViewController(profileVC, animated: true)
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 }
