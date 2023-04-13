@@ -34,15 +34,16 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
         navigationItem.title = "Профиль"
-        view.addSubview(profileHeadView)
-        view.addSubview(titleButton)
-        profileHeadView.translatesAutoresizingMaskIntoConstraints = false
         layoutProfileViewController()
-        profileHeadView.layoutProfileHeaderView()
+       
     }
     
     
     private func layoutProfileViewController() {
+        view.addSubview(profileHeadView)
+        view.addSubview(titleButton)
+        profileHeadView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             profileHeadView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             profileHeadView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BF2BC12929CF75E0004B5A6B /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2BC12829CF75E0004B5A6B /* ProfileHeaderView.swift */; };
+		BF2BC12D29E078D7004B5A6B /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2BC12C29E078D7004B5A6B /* LogInViewController.swift */; };
 		BF9BBC9D29B6ACCA00A8F55A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BBC9C29B6ACCA00A8F55A /* AppDelegate.swift */; };
 		BF9BBC9F29B6ACCA00A8F55A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BBC9E29B6ACCA00A8F55A /* SceneDelegate.swift */; };
 		BF9BBCA629B6ACCC00A8F55A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF9BBCA529B6ACCC00A8F55A /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		BF2BC12829CF75E0004B5A6B /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		BF2BC12C29E078D7004B5A6B /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BF9BBC9929B6ACCA00A8F55A /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF9BBC9C29B6ACCA00A8F55A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF9BBC9E29B6ACCA00A8F55A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			children = (
 				BF2BC12829CF75E0004B5A6B /* ProfileHeaderView.swift */,
 				BF9BBCB229B7AED000A8F55A /* ProfileViewController.swift */,
+				BF2BC12C29E078D7004B5A6B /* LogInViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			files = (
 				BF9BBCB529B7AF5800A8F55A /* PostViewController.swift in Sources */,
 				BF9BBC9D29B6ACCA00A8F55A /* AppDelegate.swift in Sources */,
+				BF2BC12D29E078D7004B5A6B /* LogInViewController.swift in Sources */,
 				BF9BBCB329B7AED000A8F55A /* ProfileViewController.swift in Sources */,
 				BF9BBCB129B6B5A200A8F55A /* FeedViewController.swift in Sources */,
 				BF9BBCE329C20F5B00A8F55A /* InfoViewController.swift in Sources */,

@@ -11,6 +11,16 @@ final class ProfileHeaderView: UIView {
     
     private var statusText: String?
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        layoutProfileHeaderView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     let imageElf: UIImageView = {
         let imageElf = UIImageView()
         imageElf.translatesAutoresizingMaskIntoConstraints = false
@@ -59,8 +69,7 @@ final class ProfileHeaderView: UIView {
     
     
     @objc func setStatusButtonPressed() {
-        statusLabel.text = statusText
-        print(statusLabel.text!)
+        statusLabel.text = statusText ?? " "
     }
     
     private lazy var statusTextFielld: UITextField = {
@@ -81,7 +90,7 @@ final class ProfileHeaderView: UIView {
     }()
     
     @objc func statusTextFielldAction(_ statusTextFielld: UITextField) {
-        statusText = statusTextFielld.text
+        statusText = statusTextFielld.text ?? " "
     }
     
     func layoutProfileHeaderView () {

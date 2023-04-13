@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         let feedVC = FeedViewController()
-        let profileVC = ProfileViewController()
+        let logInVC = LogInViewController()
 
         let tabBarController = UITabBarController()
         
@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationController1.tabBarItem.title = "Лента"
         navigationController1.tabBarItem.image = UIImage(systemName: "doc.richtext")
         
-        let navigationController2 = UINavigationController(rootViewController: profileVC)
+        let navigationController2 = UINavigationController(rootViewController: logInVC)
         navigationController2.tabBarItem.title = "Профиль"
         navigationController2.tabBarItem.image = UIImage(systemName: "person.circle")
 
