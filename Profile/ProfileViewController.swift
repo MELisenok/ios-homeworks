@@ -13,47 +13,65 @@ protocol ProfileVCDelegate: AnyObject {
 
 final class ProfileViewController: UIViewController {
     
-    let profileHeadView = ProfileHeaderView()
+    private let post: [Post] = Post.makePost()
     
-    private lazy var titleButton: UIButton = {
-        let titleButton = UIButton()
-        titleButton.translatesAutoresizingMaskIntoConstraints = false
-        titleButton.backgroundColor = .systemBlue
-        titleButton.setTitle("Кнопка", for: .normal)
-        titleButton.setTitleColor(.white, for: .normal)
-        titleButton.layer.shadowOffset.height = 4
-        titleButton.layer.shadowOffset.width = 4
-        titleButton.layer.shadowRadius = 4
-        titleButton.layer.shadowColor = UIColor.black.cgColor
-        titleButton.layer.shadowOpacity = 0.7
-        
-        return titleButton
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.dataSource = self //означает, что этот вьюКонтроллер будет ответственнен за dataSource(за наполнение таблицы информацией)
+        tableView.delegate = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier) //регистрируем ячейку, см.UIView+Extension
+        return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
-        navigationItem.title = "Профиль"
-        layoutProfileViewController()
-       
+        layoutProfileVC()
     }
     
-    
-    private func layoutProfileViewController() {
-        view.addSubview(profileHeadView)
-        view.addSubview(titleButton)
-        profileHeadView.translatesAutoresizingMaskIntoConstraints = false
+    private func layoutProfileVC() {
+        view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            profileHeadView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeadView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            profileHeadView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            profileHeadView.heightAnchor.constraint(equalToConstant: 220),
-            
-            titleButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            titleButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            titleButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-            
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        
         ])
+        
+    }
+    
+}
+
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    //какое кол-во элементов будет в одной секции:
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        post.count //ячеек столько, сколько элементов в массиве
+    }
+    
+    //в этом методе проиходит конфигурация ячейки:
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //можно использовать форсАнрап, тк класс PostTableViewCell существует => это безопасно:
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as! PostTableViewCell
+        cell.setupCell(post: post[indexPath.row])
+        return cell
+    }
+    
+
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = ProfileHeaderView()
+        header.layoutProfileHeaderView()
+        return header
+      
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        220
     }
 }

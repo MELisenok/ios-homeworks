@@ -81,13 +81,13 @@ final class LogInViewController: UIViewController {
     }()
     
     private let viewStack: UIView = {
-            let viewStack = UIView()
-            viewStack.translatesAutoresizingMaskIntoConstraints = false
-            viewStack.backgroundColor = .systemGray3
-            viewStack.layer.borderWidth = 0.5
-            viewStack.layer.borderColor = UIColor.lightGray.cgColor
-            return viewStack
-        }()
+        let viewStack = UIView()
+        viewStack.translatesAutoresizingMaskIntoConstraints = false
+        viewStack.backgroundColor = .systemGray3
+        viewStack.layer.borderWidth = 0.5
+        viewStack.layer.borderColor = UIColor.lightGray.cgColor
+        return viewStack
+    }()
     
     private lazy var logInButton: UIButton = {
         let logInButton = UIButton()
@@ -102,10 +102,10 @@ final class LogInViewController: UIViewController {
     }()
     
    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        //navigationController?.setNavigationBarHidden(true, animated: false)
         layoutLogInViewController()
         
     }

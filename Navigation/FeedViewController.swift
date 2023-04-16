@@ -83,11 +83,11 @@ class FeedViewController: UIViewController {
     
     @objc private func tapAction() {
         let postVC = PostViewController()
-        postVC.title = post.title
+       // postVC.title = post.title
         navigationController?.pushViewController(postVC, animated: true)
     }
     
-    var post = Post(title: "Привет!")
+    //var post = Post(title: "Привет!")
 }
 
    
