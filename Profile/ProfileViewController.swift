@@ -16,7 +16,7 @@ final class ProfileViewController: UIViewController {
     private let post: [Post] = Post.makePost()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.dataSource = self //означает, что этот вьюКонтроллер будет ответственнен за dataSource(за наполнение таблицы информацией)
         tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,6 +28,7 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
+        navigationController?.setNavigationBarHidden(true, animated: false)
         layoutProfileVC()
     }
     
