@@ -17,7 +17,7 @@ final class PhotosViewController: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout) //.zero тк размеры выставим в констрейнтах
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .systemGray2
+        collectionView.backgroundColor = .white
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifier) //регистрируем ячейку
         return collectionView
     }()
