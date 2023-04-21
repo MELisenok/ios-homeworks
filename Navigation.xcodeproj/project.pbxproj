@@ -11,6 +11,11 @@
 		BF2BC12D29E078D7004B5A6B /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2BC12C29E078D7004B5A6B /* LogInViewController.swift */; };
 		BF38EE0D29EB8FBD005A103F /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF38EE0C29EB8FBD005A103F /* PostTableViewCell.swift */; };
 		BF38EE0F29EB90A4005A103F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF38EE0E29EB90A4005A103F /* UIView+Extension.swift */; };
+		BF6B64CB29F198F600149BF4 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6B64CA29F198F600149BF4 /* Photos.swift */; };
+		BF6B64CD29F1992A00149BF4 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6B64CC29F1992A00149BF4 /* PhotosCollectionViewCell.swift */; };
+		BF6B64CF29F1999100149BF4 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6B64CE29F1999100149BF4 /* PhotosTableViewCell.swift */; };
+		BF6B64D129F199C200149BF4 /* PhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6B64D029F199C200149BF4 /* PhotosTableViewController.swift */; };
+		BF6B64D329F19B4200149BF4 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6B64D229F19B4200149BF4 /* PhotosViewController.swift */; };
 		BF9BBC9D29B6ACCA00A8F55A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BBC9C29B6ACCA00A8F55A /* AppDelegate.swift */; };
 		BF9BBC9F29B6ACCA00A8F55A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9BBC9E29B6ACCA00A8F55A /* SceneDelegate.swift */; };
 		BF9BBCA629B6ACCC00A8F55A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF9BBCA529B6ACCC00A8F55A /* Assets.xcassets */; };
@@ -27,6 +32,11 @@
 		BF2BC12C29E078D7004B5A6B /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		BF38EE0C29EB8FBD005A103F /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		BF38EE0E29EB90A4005A103F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		BF6B64CA29F198F600149BF4 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		BF6B64CC29F1992A00149BF4 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		BF6B64CE29F1999100149BF4 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
+		BF6B64D029F199C200149BF4 /* PhotosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewController.swift; sourceTree = "<group>"; };
+		BF6B64D229F19B4200149BF4 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		BF9BBC9929B6ACCA00A8F55A /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF9BBC9C29B6ACCA00A8F55A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF9BBC9E29B6ACCA00A8F55A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,8 +64,8 @@
 		BF2BC12729CF756B004B5A6B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				BF2BC12829CF75E0004B5A6B /* ProfileHeaderView.swift */,
 				BF9BBCB229B7AED000A8F55A /* ProfileViewController.swift */,
+				BF2BC12829CF75E0004B5A6B /* ProfileHeaderView.swift */,
 				BF2BC12C29E078D7004B5A6B /* LogInViewController.swift */,
 				BF38EE0C29EB8FBD005A103F /* PostTableViewCell.swift */,
 				BF38EE0E29EB90A4005A103F /* UIView+Extension.swift */,
@@ -63,9 +73,22 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		BF6B64C929F198A700149BF4 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				BF6B64CA29F198F600149BF4 /* Photos.swift */,
+				BF6B64CC29F1992A00149BF4 /* PhotosCollectionViewCell.swift */,
+				BF6B64CE29F1999100149BF4 /* PhotosTableViewCell.swift */,
+				BF6B64D029F199C200149BF4 /* PhotosTableViewController.swift */,
+				BF6B64D229F19B4200149BF4 /* PhotosViewController.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
 		BF9BBC9029B6ACCA00A8F55A = {
 			isa = PBXGroup;
 			children = (
+				BF6B64C929F198A700149BF4 /* Photo */,
 				BF2BC12729CF756B004B5A6B /* Profile */,
 				BF9BBC9B29B6ACCA00A8F55A /* Navigation */,
 				BF9BBC9A29B6ACCA00A8F55A /* Products */,
@@ -166,12 +189,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF6B64CB29F198F600149BF4 /* Photos.swift in Sources */,
+				BF6B64D329F19B4200149BF4 /* PhotosViewController.swift in Sources */,
 				BF38EE0F29EB90A4005A103F /* UIView+Extension.swift in Sources */,
 				BF9BBCB529B7AF5800A8F55A /* PostViewController.swift in Sources */,
 				BF9BBC9D29B6ACCA00A8F55A /* AppDelegate.swift in Sources */,
+				BF6B64CD29F1992A00149BF4 /* PhotosCollectionViewCell.swift in Sources */,
+				BF6B64D129F199C200149BF4 /* PhotosTableViewController.swift in Sources */,
 				BF2BC12D29E078D7004B5A6B /* LogInViewController.swift in Sources */,
 				BF9BBCB329B7AED000A8F55A /* ProfileViewController.swift in Sources */,
 				BF9BBCB129B6B5A200A8F55A /* FeedViewController.swift in Sources */,
+				BF6B64CF29F1999100149BF4 /* PhotosTableViewCell.swift in Sources */,
 				BF9BBCE329C20F5B00A8F55A /* InfoViewController.swift in Sources */,
 				BF9BBCE529C20FD000A8F55A /* Post.swift in Sources */,
 				BF38EE0D29EB8FBD005A103F /* PostTableViewCell.swift in Sources */,

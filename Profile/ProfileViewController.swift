@@ -11,9 +11,10 @@ protocol ProfileVCDelegate: AnyObject {
     func changeName(text: String)
 }
 
-final class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController, PhotosTableDelegate {
     
     private let post: [Post] = Post.makePost()
+    private let photosTableVC = PhotosTableViewController()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -25,9 +26,15 @@ final class ProfileViewController: UIViewController {
         return tableView
     }()
     
+    func galleryButtonPressed() {
+            let photosVC = PhotosViewController()
+            navigationController?.pushViewController(photosVC, animated: true)
+        }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
+        photosTableVC.delegate = self
         navigationController?.setNavigationBarHidden(true, animated: false)
         layoutProfileVC()
     }
@@ -51,8 +58,11 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     //какое кол-во элементов будет в одной секции:
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        post.count //ячеек столько, сколько элементов в массиве
-    }
+            if section == 0 {
+                return 0
+            }
+            return post.count //ячеек столько, сколько элементов в массиве
+        }
     
     //в этом методе проиходит конфигурация ячейки:
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,16 +73,29 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-
+    func numberOfSections(in tableView: UITableView) -> Int {
+           2
+       }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = ProfileHeaderView()
-        header.layoutProfileHeaderView()
-        return header
-      
+        if section == 0 {
+            let header = ProfileHeaderView()
+            header.layoutProfileHeaderView()
+            return header
+        }
+        if section == 1 {
+            return photosTableVC.view
+        }
+        return UIView()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        220
+        if section == 0 {
+            return 220
+        }
+        if section == 1 {
+            return 160
+        }
+        return 0
     }
 }
