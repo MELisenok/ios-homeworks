@@ -38,7 +38,7 @@ final class LogInViewController: UIViewController {
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.backgroundColor = .systemGray2
+        stackView.backgroundColor = .systemGray6
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.spacing = 16
@@ -60,7 +60,7 @@ final class LogInViewController: UIViewController {
         loginTextFielld.font = .systemFont(ofSize: 16)
         loginTextFielld.textColor = .black
         loginTextFielld.autocapitalizationType = .none
-
+        
         return loginTextFielld
     }()
     
@@ -76,7 +76,7 @@ final class LogInViewController: UIViewController {
         passwordTextFielld.textColor = .black
         passwordTextFielld.autocapitalizationType = .none
         passwordTextFielld.isSecureTextEntry = true
-
+        
         return passwordTextFielld
     }()
     
@@ -101,7 +101,15 @@ final class LogInViewController: UIViewController {
         return logInButton
     }()
     
-   
+    private var countPasswordLabel: UILabel = {
+        let countPasswordLabel = UILabel()
+        countPasswordLabel.translatesAutoresizingMaskIntoConstraints = false
+        countPasswordLabel.backgroundColor = .white
+        countPasswordLabel.textColor = UIColor.red
+        countPasswordLabel.font = .boldSystemFont(ofSize: 12.0)
+        return countPasswordLabel
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -134,6 +142,25 @@ final class LogInViewController: UIViewController {
         scrollView.verticalScrollIndicatorInsets = .zero
     }
     
+    private func shakeAnimationForLogin() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.1
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: loginTextFielld.center.x-10, y: loginTextFielld.center.y))
+        
+        loginTextFielld.layer.add(animation, forKey: "position")
+    }
+    
+    private func shakeAnimationForPassword() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.1
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: passwordTextFielld.center.x-10, y: passwordTextFielld.center.y))
+        
+        passwordTextFielld.layer.add(animation, forKey: "position")
+    }
     
     private func layoutLogInViewController() {
         view.addSubview(scrollView)
@@ -143,6 +170,7 @@ final class LogInViewController: UIViewController {
         stackView.addArrangedSubview(loginTextFielld)
         stackView.addArrangedSubview(viewStack)
         stackView.addArrangedSubview(passwordTextFielld)
+        contentView.addSubview(countPasswordLabel)
         contentView.addSubview(logInButton)
         
         
@@ -151,7 +179,7 @@ final class LogInViewController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-
+            
             
             contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
@@ -185,6 +213,10 @@ final class LogInViewController: UIViewController {
             passwordTextFielld.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             passwordTextFielld.heightAnchor.constraint(equalToConstant: 49.75),
             
+            countPasswordLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 2),
+            countPasswordLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            countPasswordLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15),
+            
             logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
@@ -195,7 +227,38 @@ final class LogInViewController: UIViewController {
     }
     
     @objc private func logInButtonPressed() {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+        //shake animation
+        if loginTextFielld.text!.isEmpty ||  passwordTextFielld.text!.isEmpty {
+            if loginTextFielld.text!.isEmpty {
+                shakeAnimationForLogin()
+                if passwordTextFielld.text!.isEmpty {shakeAnimationForPassword() }
+            }
+            if passwordTextFielld.text!.isEmpty {shakeAnimationForPassword()}
+        }
+        // кол-во символов в пароле не < 5 и правильный ли логин и пароль
+        if loginTextFielld.text!.count > 0 && passwordTextFielld.text!.count > 0 {
+            countPassword()
+            correctLogAndPass()
+            let profileVC = ProfileViewController()
+            navigationController?.pushViewController(profileVC, animated: true)}
     }
+    
+    private func countPassword() {
+        if loginTextFielld.text!.count > 0 && passwordTextFielld.text!.count < 5 {
+            countPasswordLabel.text = "Пароль должен содержать не менее 5 символов!"
+        }
+    }
+    
+    
+    private func correctLogAndPass() {
+        if loginTextFielld.text != "123" || passwordTextFielld.text != "12345" {
+            let alert = UIAlertController(title: "Внимание!", message: "Неправильный логин или пароль!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ок", style: .default) { _ in
+                self.dismiss(animated: true)
+            }
+            alert.addAction(okAction)
+            present(alert, animated: true)
+        }
+    }
+    
 }

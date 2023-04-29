@@ -57,10 +57,17 @@ final class ProfileHeaderView: UIView {
         return setStatusButton
     }()
     
-    
+    //устанавливает статус по нажатию и трясется если пустое поле
     @objc func setStatusButtonPressed() {
-        statusLabel.text = statusText ?? " "
+        if statusTextFielld.text!.isEmpty {
+            shakeAnimationForSatus()
+        } else {
+            statusText = statusTextFielld.text
+            statusLabel.text = statusText
+        }
+        
     }
+    
     
     private lazy var statusTextFielld: UITextField = {
         let statusTextFielld = UITextField()
@@ -91,6 +98,16 @@ final class ProfileHeaderView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func shakeAnimationForSatus() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.1
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: statusTextFielld.center.x-10, y: statusTextFielld.center.y))
+        
+        statusTextFielld.layer.add(animation, forKey: "position")
     }
     
     func layoutProfileHeaderView () {

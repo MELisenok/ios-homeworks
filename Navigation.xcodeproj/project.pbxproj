@@ -77,9 +77,9 @@
 			isa = PBXGroup;
 			children = (
 				BF6B64CA29F198F600149BF4 /* Photos.swift */,
-				BF6B64CC29F1992A00149BF4 /* PhotosCollectionViewCell.swift */,
 				BF6B64CE29F1999100149BF4 /* PhotosTableViewCell.swift */,
 				BF6B64D029F199C200149BF4 /* PhotosTableViewController.swift */,
+				BF6B64CC29F1992A00149BF4 /* PhotosCollectionViewCell.swift */,
 				BF6B64D229F19B4200149BF4 /* PhotosViewController.swift */,
 			);
 			path = Photo;
