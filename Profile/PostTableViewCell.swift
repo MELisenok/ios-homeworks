@@ -8,7 +8,10 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-
+    
+    var onLike: (() -> ())?
+    var onOpen: (() -> ())?
+    
     private let contentPostView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -58,7 +61,7 @@ class PostTableViewCell: UITableViewCell {
         label.textColor = .black
         return label
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         customizeCell()
@@ -69,7 +72,7 @@ class PostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//метод будет срабатывать, когда ячейка будет переиспользована, в нём мы должны скинуть все наши настройки:
+    //метод будет срабатывать, когда ячейка будет переиспользована, в нём мы должны скинуть все наши настройки:
     override func prepareForReuse() {
         super.prepareForReuse()
         postImageView.image = nil
@@ -79,11 +82,11 @@ class PostTableViewCell: UITableViewCell {
         postViews.text = ""
     }
     
-//метод будет вызыватьс из вне, сюда будет назначаться для ImageView картинка, для text текст
+    //метод будет вызыватьс из вне, сюда будет назначаться для ImageView картинка, для text текст
     func setupCell(post: Post) {
         let constantLikesText = "Likes: "
         let constantViewsText = "Views: "
-        postImageView.image = post.image
+        postImageView.image = UIImage(named: post.image ?? "")
         postAuthor.text = post.author
         postDescription.text = post.description
         postLikes.text = constantLikesText + String(post.likes)
@@ -93,13 +96,21 @@ class PostTableViewCell: UITableViewCell {
     
     private func customizeCell() {
         contentPostView.backgroundColor = .white
-
+        
+        let likeTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(likeTap))
+        postLikes.isUserInteractionEnabled = true
+        postLikes.addGestureRecognizer(likeTapRecognizer)
+        
+        let imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTap))
+        postImageView.isUserInteractionEnabled = true
+        postImageView.addGestureRecognizer(imageTapRecognizer)
+        
     }
     
     private func layout() {
-//        contentView.addSubview(contentWhiteView)
+        //        contentView.addSubview(contentWhiteView)
         [contentPostView, postImageView, postAuthor, postDescription, postLikes, postViews].forEach { contentView.addSubview($0) }
-//        [contentWhiteView, carImageView, carText].forEach { contentView.addSubview($0) }
+        //        [contentWhiteView, carImageView, carText].forEach { contentView.addSubview($0) }
         
         //let heightView: CGFloat = 100
         let inset: CGFloat = 16
@@ -132,10 +143,17 @@ class PostTableViewCell: UITableViewCell {
             postViews.topAnchor.constraint(equalTo: postDescription.bottomAnchor, constant: inset),
             postViews.trailingAnchor.constraint(equalTo: contentPostView.trailingAnchor, constant: -inset),
             postViews.bottomAnchor.constraint(equalTo: contentPostView.bottomAnchor, constant: -inset)
-    
+            
         ])
     }
-
-
+    
+    @objc private func likeTap(sender: UIGestureRecognizer) {
+        onLike?()
+    }
+    
+    @objc private func imageTap(sender: UIGestureRecognizer) {
+        onOpen?()
+    }
+    
 }
 
